@@ -8,16 +8,16 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --gold:#4a9eda;
-  --gold2:#2d7ab5;
-  --dark:#05080f;
-  --dark2:#0a0f1a;
-  --dark3:#0f1826;
-  --dark4:#162033;
-  --text:#c8d4e0;
-  --muted:#5a7a9a;
-  --white:#f0f4f8;
-  --red:#1a3a6b;
+  --gold:#2ecc71;
+  --gold2:#27ae60;
+  --dark:#050a06;
+  --dark2:#0a1408;
+  --dark3:#0f1a0c;
+  --dark4:#142010;
+  --text:#c8e0d0;
+  --muted:#5a8a6a;
+  --white:#f0f4f0;
+  --red:#1a3a2b;
 }
 html{scroll-behavior:smooth;}
 body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.6;}
@@ -50,7 +50,7 @@ nav{
   font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:2px;
   text-transform:uppercase;margin-bottom:24px;
 }
-.badge-dot{width:6px;height:6px;background:#4a9eda;border-radius:50%;animation:pulse 2s infinite;}
+.badge-dot{width:6px;height:6px;background:#2ecc71;border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
 .hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,5.5rem);line-height:0.95;color:var(--white);letter-spacing:2px;margin-bottom:12px;}
 .hero-name span{color:var(--gold);}
@@ -225,7 +225,7 @@ footer span{color:var(--gold);}
 </nav>
 
 <!-- HERO -->
-<div style="background:radial-gradient(ellipse at 70% 50%,rgba(74,158,218,0.08),transparent 60%),var(--dark);">
+<div style="background:radial-gradient(ellipse at 70% 50%,rgba(46,204,113,0.08),transparent 60%),var(--dark);">
   <div class="hero">
     <div>
       <div class="hero-badge"><span class="badge-dot"></span>Disponible · Full Time · Turnos Rotativos</div>
@@ -424,16 +424,16 @@ footer span{color:var(--gold);}
 <!-- MODAL IMPRIMIR -->
 <div id="printModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;">
   <div style="background:#1a1a1a;border:1px solid #c4a04c;border-radius:8px;padding:36px;max-width:420px;width:90%;text-align:center;">
-    <h3 style="color:#4a9eda;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:8px;">ANTES DE DESCARGAR</h3>
+    <h3 style="color:#2ecc71;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:8px;">ANTES DE DESCARGAR</h3>
     <p style="color:#888;font-size:0.84rem;margin-bottom:24px;">Dejá tu contacto para que Ariel pueda comunicarse con vos</p>
     <input id="pN" type="text" placeholder="Nombre y apellido *" style="width:100%;padding:10px 14px;margin-bottom:10px;background:#111;border:1px solid rgba(196,160,76,0.3);color:#fff;font-size:0.86rem;box-sizing:border-box;">
     <input id="pE" type="email" placeholder="Email *" style="width:100%;padding:10px 14px;margin-bottom:10px;background:#111;border:1px solid rgba(196,160,76,0.3);color:#fff;font-size:0.86rem;box-sizing:border-box;">
     <input id="pT" type="tel" placeholder="Teléfono (opcional)" style="width:100%;padding:10px 14px;margin-bottom:20px;background:#111;border:1px solid rgba(196,160,76,0.3);color:#fff;font-size:0.86rem;box-sizing:border-box;">
     <div style="display:flex;gap:10px;justify-content:center;">
       <button onclick="document.getElementById('printModal').style.display='none'" style="background:transparent;border:1px solid #444;color:#888;padding:10px 20px;cursor:pointer;font-size:0.82rem;">Cancelar</button>
-      <button onclick="enviarYImprimir()" style="background:#4a9eda;border:none;color:#fff;padding:10px 24px;cursor:pointer;font-weight:700;font-size:0.82rem;text-transform:uppercase;letter-spacing:1px;">Descargar PDF</button>
+      <button onclick="enviarYImprimir()" style="background:#2ecc71;border:none;color:#fff;padding:10px 24px;cursor:pointer;font-weight:700;font-size:0.82rem;text-transform:uppercase;letter-spacing:1px;">Descargar PDF</button>
     </div>
-    <p id="pMsg" style="color:#4a9eda;font-size:0.76rem;margin-top:12px;display:none;">✓ ¡Gracias! Generando PDF...</p>
+    <p id="pMsg" style="color:#2ecc71;font-size:0.76rem;margin-top:12px;display:none;">✓ ¡Gracias! Generando PDF...</p>
   </div>
 </div>
 
@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded',function(){
         if(p.y>canvas.height)p.y=0;
         ctx.beginPath();
         ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle='rgba(74,158,218,'+p.alpha+')';
+        ctx.fillStyle='rgba(46,204,113,'+p.alpha+')';
         ctx.fill();
       });
       requestAnimationFrame(draw);
