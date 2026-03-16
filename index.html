@@ -201,10 +201,18 @@ footer span{color:var(--gold);}
 /* MAPA */
 .mapa-section{padding:40px 0;background:var(--dark);}
 
+/* SCROLL ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.6s,transform 0.6s;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* PARTICLES */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+
 @media print{.wa-float,nav,.btn-wa,.btn-mail,.btn-primary,.btn-secondary{display:none!important;}}
 </style>
 </head>
 <body>
+<canvas id="particles"></canvas>
 
 <nav>
   <div class="nav-logo">A.V. MARTÍNEZ</div>
@@ -246,7 +254,7 @@ footer span{color:var(--gold);}
 <section class="section section-alt" id="experiencia">
   <div class="container">
     <div class="s-tag">Trayectoria</div>
-    <div class="s-title">EXPERIENCIA<br>PROFESIONAL</div>
+    <div class="s-title fade-in">EXPERIENCIA<br>PROFESIONAL</div>
     <div class="timeline">
       <div class="t-item t-current">
         <div class="t-dot"></div>
@@ -303,7 +311,7 @@ footer span{color:var(--gold);}
 <section class="section" id="competencias">
   <div class="container">
     <div class="s-tag">Habilidades Técnicas</div>
-    <div class="s-title">COMPETENCIAS</div>
+    <div class="s-title fade-in">COMPETENCIAS</div>
     <div class="comp-grid">
       <div class="comp-item"><span class="comp-icon">📹</span><span class="comp-text">Monitoreo CCTV IP/Analógico</span></div>
       <div class="comp-item"><span class="comp-icon">🖥️</span><span class="comp-text">Sistemas NVR y DVR</span></div>
@@ -325,7 +333,7 @@ footer span{color:var(--gold);}
 <section class="section section-alt" id="formacion">
   <div class="container">
     <div class="s-tag">Formación y Certificaciones</div>
-    <div class="s-title">CERTIFICACIONES</div>
+    <div class="s-title fade-in">CERTIFICACIONES</div>
     <div class="cert-grid">
       <div class="cert-item"><div class="cert-n">01</div><div class="cert-info"><h4>Manipulación Manual de Cargas</h4><p>Resolución SRT · 2026</p></div></div>
       <div class="cert-item"><div class="cert-n">02</div><div class="cert-info"><h4>Seguridad Industrial OSHA</h4><p>Universidad de Colorado</p></div></div>
@@ -344,7 +352,7 @@ footer span{color:var(--gold);}
 <section class="section" id="contacto">
   <div class="container">
     <div class="s-tag">Contacto</div>
-    <div class="s-title">HABLEMOS</div>
+    <div class="s-title fade-in">HABLEMOS</div>
     <div class="contacto-grid">
       <div class="c-items">
         <div class="c-item">
@@ -398,6 +406,9 @@ footer span{color:var(--gold);}
 <footer>
   <p><span>ARIEL VÍCTOR MARTÍNEZ</span> · SANTA FE, ARGENTINA · SEGURIDAD PATRIMONIAL</p>
   <p style="margin-top:8px;">ari.am629@gmail.com · +54 9 342 596-2954</p>
+  <p style="margin-top:12px;">
+    <a href="https://www.linkedin.com/in/ariel-victor-m-bb02361a7" target="_blank" style="color:#0A66C2;font-weight:bold;">LinkedIn</a>
+  </p>
 </footer>
 
 <!-- CONTADOR -->
@@ -439,6 +450,61 @@ function enviarYImprimir(){
     window.print();
   },1500);
 }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  // Scroll Animations
+  var observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(function(el){
+    observer.observe(el);
+  });
+  
+  // Particles
+  var canvas=document.getElementById('particles');
+  if(canvas){
+    var ctx=canvas.getContext('2d');
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+    var particles=[];
+    for(var i=0;i<60;i++){
+      particles.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        r:Math.random()*2+0.5,
+        vx:(Math.random()-0.5)*0.5,
+        vy:(Math.random()-0.5)*0.5,
+        alpha:Math.random()*0.5+0.1
+      });
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach(function(p){
+        p.x+=p.vx;
+        p.y+=p.vy;
+        if(p.x<0)p.x=canvas.width;
+        if(p.x>canvas.width)p.x=0;
+        if(p.y<0)p.y=canvas.height;
+        if(p.y>canvas.height)p.y=0;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(74,158,218,'+p.alpha+')';
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+    window.addEventListener('resize',function(){
+      canvas.width=window.innerWidth;
+      canvas.height=window.innerHeight;
+    });
+  }
+});
 </script>
 </body>
 </html>
